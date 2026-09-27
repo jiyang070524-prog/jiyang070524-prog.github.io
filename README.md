@@ -9,6 +9,10 @@
 3. Branch 选择 **main**，目录选择 **/(root)**，点击 **Save**。
 4. 等待 GitHub Actions 中 Pages 构建完成，然后访问 https://jiyang070524-prog.github.io/ 。
 
+## 用网页编辑笔记
+
+打开 [Pages CMS](https://app.pagescms.org/)，使用 GitHub 登录并授权它访问本仓库。之后可在“笔记”栏目中新建或编辑文章；保存后会写回 GitHub，并自动触发网站更新。文章日期会自动加入文件名。
+
 ## 修改个人介绍
 
 在 `_config.yml` 修改 `author`、`title`、`description`。首页更多介绍在 `index.html` 的“关于这里”部分。当前名字 Yang 是临时使用的，可替换为你的昵称。
