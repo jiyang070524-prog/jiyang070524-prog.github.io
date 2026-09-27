@@ -1,0 +1,21 @@
+title: Yang 的个人主页
+description: 记录学习，也记录生活。
+author: Yang
+url: https://jiyang070524-prog.github.io
+baseurl: ""
+github_username: jiyang070524-prog
+lang: zh-CN
+timezone: Asia/Shanghai
+markdown: kramdown
+permalink: /notes/:title/
+future: false
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: note
+exclude:
+  - README.md
+  - preview
+  - scripts

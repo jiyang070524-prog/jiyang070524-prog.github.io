@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title | escape }} · {% endif %}{{ site.title | escape }}</title>
+  <meta name="description" content="{{ page.description | default: site.description | escape }}">
+  <meta name="color-scheme" content="light">
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+</head>
+<body>
+  <a class="skip" href="#main">跳到正文</a>
+  <header class="header wrap">
+    <a class="brand" href="{{ '/' | relative_url }}"><span class="brand-icon" aria-hidden="true">Y.</span><span>{{ site.author | escape }}</span></a>
+    <nav aria-label="主导航">
+      <a href="{{ '/' | relative_url }}#notes">笔记</a>
+      <a href="{{ '/' | relative_url }}#about">关于</a>
+      <a href="https://github.com/{{ site.github_username }}">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main" class="wrap">{{ content }}</main>
+  <footer class="footer wrap"><span>© {{ site.time | date: '%Y' }} {{ site.author | escape }}</span><span>慢慢记录，常常回看。</span></footer>
+</body>
+</html>

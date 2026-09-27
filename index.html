@@ -1,0 +1,28 @@
+---
+layout: default
+---
+<section class="hero" aria-labelledby="hello">
+  <div>
+    <p class="eyebrow"><span class="dot" aria-hidden="true"></span> 一个小小的个人空间</p>
+    <h1 id="hello">你好，我是 {{ site.author | escape }}。<br><span>在这里，留下一些记录。</span></h1>
+    <p class="intro">{{ site.description | escape }}<br>把零散的想法整理成笔记，把值得记住的东西放在这里。</p>
+    <a class="button" href="#notes">翻翻我的笔记 <span aria-hidden="true">↓</span></a>
+  </div>
+  <div class="paper" aria-hidden="true"><div class="paper-label">NOTES & THOUGHTS</div><div class="paper-line">学过的知识</div><div class="paper-line">偶尔的想法</div><div class="paper-line">生活的片段</div><div class="paper-sign">一点一点，积累起来。</div></div>
+</section>
+<section class="notes section" id="notes" aria-labelledby="notes-title">
+  <div class="section-heading"><div><p class="eyebrow">THE NOTEBOOK</p><h2 id="notes-title">最近的笔记</h2></div><span class="count">{{ site.posts | size }} 篇记录</span></div>
+  <div class="note-list">
+    {% for post in site.posts %}
+    <a class="note-row" href="{{ post.url | relative_url }}">
+      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time>
+      <div><h3>{{ post.title | escape }}</h3><p>{{ post.description | default: '点击阅读这篇笔记。' | escape }}</p></div>
+      <span class="tag">{{ post.category | default: '笔记' | escape }}</span><span class="arrow" aria-hidden="true">↗</span>
+    </a>
+    {% else %}<p class="empty">第一篇笔记还在路上，过些时候再来看看。</p>{% endfor %}
+  </div>
+</section>
+<section class="about section" id="about" aria-labelledby="about-title">
+  <div><p class="eyebrow">A LITTLE ABOUT ME</p><h2 id="about-title">关于这里</h2></div>
+  <div><p>这是我的个人主页，也是一个慢慢积累的笔记本。这里会放一些学习记录、思考和日常片段。</p><p>不急着写很多，先把每一次收获留下来。</p><a class="text-link" href="https://github.com/{{ site.github_username }}">在 GitHub 找到我 <span aria-hidden="true">↗</span></a></div>
+</section>
