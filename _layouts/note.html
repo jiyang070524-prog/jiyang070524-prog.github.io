@@ -2,12 +2,12 @@
 layout: default
 ---
 <article class="article">
-  <a class="back" href="{{ '/' | relative_url }}#notes">← 所有笔记</a>
-  <header class="article-header">
-    <p class="eyebrow">{{ page.category | default: '笔记' | escape }} / <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y.%m.%d' }}</time></p>
+  <p><a href="{{ '/' | relative_url }}#notes">返回笔记列表</a></p>
+  <header class="box article-header">
+    <p>{{ page.category | default: '笔记' | escape }} / <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y-%m-%d' }}</time></p>
     <h1>{{ page.title | escape }}</h1>
     {% if page.description %}<p class="intro">{{ page.description | escape }}</p>{% endif %}
   </header>
   <div class="prose">{{ content }}</div>
-  <a class="back article-end" href="{{ '/' | relative_url }}#notes">← 回到笔记列表</a>
+  <p><a href="{{ '/' | relative_url }}#notes">返回笔记列表</a></p>
 </article>
