@@ -4,8 +4,8 @@ layout: default
 <article class="article">
   <p><a href="{{ '/' | relative_url }}#notes">返回笔记列表</a></p>
   <header class="box article-header">
-    <p>{{ page.category | default: '笔记' | escape }} / <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y-%m-%d' }}</time></p>
-    <h1>{{ page.title | escape }}</h1>
+    <p>{{ page.category | default: '笔记' | escape }}{% if page.date %} / <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y-%m-%d' }}</time>{% endif %}</p>
+    {% unless page.hide_title %}<h1>{{ page.title | escape }}</h1>{% endunless %}
     {% if page.description %}<p class="intro">{{ page.description | escape }}</p>{% endif %}
   </header>
   <div class="prose">{{ content }}</div>

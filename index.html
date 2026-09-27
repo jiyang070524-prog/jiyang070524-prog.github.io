@@ -14,6 +14,7 @@ layout: default
     <li><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time> <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>{% if post.category %} <span>（{{ post.category | escape }}）</span>{% endif %}</li>
     {% else %}<li>还没有笔记。</li>{% endfor %}
   </ul>
+  <p><a href="{{ '/study-notes/' | relative_url }}">专题笔记：硬件算子与验证</a></p>
 </section>
 
 <section class="box" id="about" aria-labelledby="about-title">
