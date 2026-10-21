@@ -10,5 +10,6 @@ topics:
 - dl
 why: 观察算子调度如何连接模型与目标硬件。
 order: 8
+graph_label: TVM
 review: ''
 ---

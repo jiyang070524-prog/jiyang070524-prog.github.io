@@ -9,20 +9,15 @@ layout: default
 </section>
 <section id="map" class="map-section" aria-labelledby="map-title">
   <div class="section-heading"><div><p class="eyebrow">01 / 学科脉络</p><h2 id="map-title">三层，相互连接</h2></div><p>点击方向，筛选下方论文。</p></div>
-  {% assign levels = '硬件结构,实现方法,软件与学习' | split: ',' %}
-  {% for level in levels %}
-  <div class="map-level">
-    <div class="level-label"><span>0{{ forloop.index }}</span><strong>{{ level }}</strong></div>
-    <div class="topic-grid">
-      {% for topic in site.data.topics %}{% if topic.level == level %}
-      <button class="topic-node" type="button" data-topic="{{ topic.id }}" aria-pressed="false">
-        <span class="topic-number">{{ topic.number }}</span><strong>{{ topic.name }}</strong><span>{{ topic.description }}</span><small>{{ topic.paths }}</small>
-      </button>
-      {% endif %}{% endfor %}
-    </div>
+  <div class="graph-key"><span><i class="key-topic"></i>学科方向</span><span><i class="key-paper"></i>论文</span><span><i class="key-line"></i>所属方向</span><span class="graph-help">点击方向筛选 · 点击论文查看便签</span></div>
+  <div class="graph-scroll" aria-label="论文与学科关系图，可横向滚动">
+    <svg id="knowledge-graph" viewBox="0 0 1200 840" role="group" aria-label="学科方向与论文关系网"></svg>
   </div>
-  {% endfor %}
-  <p class="map-links"><strong>交叉路径</strong>　内存 ↔ 计算：数据搬运　/　计算 ↔ 编译器：算子映射　/　验证 ↔ 后端：设计收敛　/　强化学习 ↔ 后端：布局优化　/　深度学习 ↔ 内存：注意力 IO</p>
+  <p class="mobile-graph-hint">在手机上可左右滑动查看整张图。</p>
+  <div class="topic-controls" aria-label="按方向筛选论文">
+    {% for topic in site.data.topics %}<button class="topic-filter" type="button" data-topic="{{ topic.id }}" aria-pressed="false">{{ topic.name }}</button>{% endfor %}
+  </div>
+  <p class="graph-caption">线条连接论文和它所属的方向。跨方向的论文是这张网的交叉点；筛选只影响下方索引，不会删去图上的其他节点。</p>
 </section>
 <section id="papers" class="paper-section" aria-labelledby="papers-title">
   <div class="section-heading"><div><p class="eyebrow">02 / 论文与便签</p><h2 id="papers-title">阅读索引 <span class="count">{{ site.papers | size }}</span></h2></div><button class="clear-filter" type="button" hidden>显示全部</button></div>
@@ -30,7 +25,7 @@ layout: default
   <div class="paper-grid">
     {% assign sorted_papers = site.papers | sort: 'order' %}
     {% for paper in sorted_papers %}
-    <article class="paper-card" data-topics="{{ paper.topics | join: ' ' }}">
+    <article class="paper-card" data-topics="{{ paper.topics | join: ' ' }}" data-order="{{ paper.order }}" data-short="{{ paper.graph_label | default: paper.title | escape }}">
       <div class="paper-card-top"><span class="paper-index">{{ paper.order }}</span><span class="status{% if paper.review and paper.review != '' %} read{% endif %}">{% if paper.review and paper.review != '' %}已短评{% else %}待读{% endif %}</span></div>
       <h3><a href="{{ paper.url | relative_url }}">{{ paper.title | escape }}</a></h3>
       <p class="paper-meta">{{ paper.year }} · {{ paper.authors | escape }}</p>

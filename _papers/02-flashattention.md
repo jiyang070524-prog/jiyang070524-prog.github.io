@@ -10,5 +10,6 @@ topics:
 - dl
 why: 把注意力计算与显存 IO 放在同一张图上。
 order: 2
+graph_label: FlashAttention
 review: ''
 ---

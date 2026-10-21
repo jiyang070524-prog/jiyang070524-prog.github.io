@@ -9,5 +9,6 @@ topics:
 - dl
 why: 从真实负载理解矩阵单元和片上存储的设计。
 order: 3
+graph_label: TPU
 review: ''
 ---

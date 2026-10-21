@@ -9,5 +9,6 @@ topics:
 - verification
 why: 从 DRAM 扰动错误看内存可靠性与系统边界。
 order: 1
+graph_label: RowHammer
 review: ''
 ---

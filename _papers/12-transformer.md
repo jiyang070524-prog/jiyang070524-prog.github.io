@@ -9,5 +9,6 @@ topics:
 - compute
 why: 沿注意力结构理解模型和硬件需求的变化。
 order: 12
+graph_label: Transformer
 review: ''
 ---

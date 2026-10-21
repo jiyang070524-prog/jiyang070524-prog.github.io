@@ -8,5 +8,6 @@ topics:
 - branch
 why: 沿历史信息追问分支预测为什么有效。
 order: 4
+graph_label: 两级分支预测
 review: ''
 ---

@@ -9,5 +9,6 @@ topics:
 - compute
 why: 从残差连接理解深层网络的优化问题。
 order: 11
+graph_label: ResNet
 review: ''
 ---

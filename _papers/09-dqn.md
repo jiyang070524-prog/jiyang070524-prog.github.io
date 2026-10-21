@@ -9,5 +9,6 @@ topics:
 - dl
 why: 从像素输入和价值函数理解深度强化学习。
 order: 9
+graph_label: DQN
 review: ''
 ---

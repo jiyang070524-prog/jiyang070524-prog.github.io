@@ -8,5 +8,6 @@ topics:
 - compiler
 why: 理解 IR 如何承接分析、优化和代码生成。
 order: 7
+graph_label: LLVM
 review: ''
 ---
