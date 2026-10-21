@@ -1,24 +1,44 @@
 ---
 layout: default
 ---
-<section class="box intro" aria-labelledby="hello">
-  <h1 id="hello">{{ site.author | escape }} 的个人主页</h1>
-  <p>{{ site.description | escape }}</p>
-  <p>这里存放学习笔记、想法和日常记录。</p>
+<section class="intro" aria-labelledby="home-title">
+  <p class="eyebrow">PAPER ATLAS / 论文阅读地图</p>
+  <h1 id="home-title">沿着问题读论文</h1>
+  <p class="lead">从内存、计算与分支出发，走向验证和芯片后端，再连接编译器、强化学习与深度学习。这里是一张持续生长的阅读网；每篇论文读完后，留一张短评便签。</p>
+  <p class="intro-links"><a href="#map">浏览学科脉络 ↓</a><a href="#papers">查看论文索引 ↓</a></p>
 </section>
-
-<section class="box" id="notes" aria-labelledby="notes-title">
-  <h2 id="notes-title">笔记（{{ site.posts | size }}）</h2>
-  <ul class="note-list">
-    {% for post in site.posts %}
-    <li><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time> <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>{% if post.category %} <span>（{{ post.category | escape }}）</span>{% endif %}</li>
-    {% else %}<li>还没有笔记。</li>{% endfor %}
-  </ul>
-  <p><a href="{{ '/study-notes/' | relative_url }}">专题笔记：硬件算子与验证</a></p>
+<section id="map" class="map-section" aria-labelledby="map-title">
+  <div class="section-heading"><div><p class="eyebrow">01 / 学科脉络</p><h2 id="map-title">三层，相互连接</h2></div><p>点击方向，筛选下方论文。</p></div>
+  {% assign levels = '硬件结构,实现方法,软件与学习' | split: ',' %}
+  {% for level in levels %}
+  <div class="map-level">
+    <div class="level-label"><span>0{{ forloop.index }}</span><strong>{{ level }}</strong></div>
+    <div class="topic-grid">
+      {% for topic in site.data.topics %}{% if topic.level == level %}
+      <button class="topic-node" type="button" data-topic="{{ topic.id }}" aria-pressed="false">
+        <span class="topic-number">{{ topic.number }}</span><strong>{{ topic.name }}</strong><span>{{ topic.description }}</span><small>{{ topic.paths }}</small>
+      </button>
+      {% endif %}{% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+  <p class="map-links"><strong>交叉路径</strong>　内存 ↔ 计算：数据搬运　/　计算 ↔ 编译器：算子映射　/　验证 ↔ 后端：设计收敛　/　强化学习 ↔ 后端：布局优化　/　深度学习 ↔ 内存：注意力 IO</p>
 </section>
-
-<section class="box" id="about" aria-labelledby="about-title">
-  <h2 id="about-title">关于</h2>
-  <p>这是一个简单的个人网页，用来整理值得留下的内容。</p>
-  <p><a href="https://github.com/{{ site.github_username }}">GitHub：{{ site.github_username }}</a></p>
+<section id="papers" class="paper-section" aria-labelledby="papers-title">
+  <div class="section-heading"><div><p class="eyebrow">02 / 论文与便签</p><h2 id="papers-title">阅读索引 <span class="count">{{ site.papers | size }}</span></h2></div><button class="clear-filter" type="button" hidden>显示全部</button></div>
+  <p class="reading-hint" id="filter-status" aria-live="polite">选定一个方向后，这里会留下相关论文。方向之间的交叉由论文上的标签串起来。</p>
+  <div class="paper-grid">
+    {% assign sorted_papers = site.papers | sort: 'order' %}
+    {% for paper in sorted_papers %}
+    <article class="paper-card" data-topics="{{ paper.topics | join: ' ' }}">
+      <div class="paper-card-top"><span class="paper-index">{{ paper.order }}</span><span class="status{% if paper.review and paper.review != '' %} read{% endif %}">{% if paper.review and paper.review != '' %}已短评{% else %}待读{% endif %}</span></div>
+      <h3><a href="{{ paper.url | relative_url }}">{{ paper.title | escape }}</a></h3>
+      <p class="paper-meta">{{ paper.year }} · {{ paper.authors | escape }}</p>
+      <p class="paper-reason">{{ paper.why | escape }}</p>
+      <div class="paper-tags">{% for id in paper.topics %}{% assign topic = site.data.topics | where: 'id', id | first %}<span>{{ topic.name }}</span>{% endfor %}</div>
+      <p class="paper-note">{% if paper.review and paper.review != '' %}<span>短评</span>{{ paper.review | escape }}{% else %}<span>短评便签</span>读完后再写。{% endif %}</p>
+    </article>
+    {% endfor %}
+  </div>
 </section>
+<section class="archive box" id="archive" aria-labelledby="archive-title"><h2 id="archive-title">旧笔记与其他记录</h2><p>之前的硬件算子与验证笔记仍可从 <a href="{{ '/study-notes/' | relative_url }}">专题笔记</a> 阅读；原有 <a href="{{ '/notes/hello/' | relative_url }}">主页记录</a> 也保留。</p></section>

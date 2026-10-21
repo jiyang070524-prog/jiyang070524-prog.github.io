@@ -1,0 +1,48 @@
+- id: memory
+  number: '01'
+  name: 内存
+  level: 硬件结构
+  description: 层级、带宽、局部性与可靠性
+  paths: 缓存 → DRAM → 数据搬运
+- id: compute
+  number: '02'
+  name: 计算
+  level: 硬件结构
+  description: 并行、阵列与专用加速
+  paths: 指令 → 数据流 → 加速器
+- id: branch
+  number: '03'
+  name: 分支
+  level: 硬件结构
+  description: 预测、推测与控制流
+  paths: 历史 → 预测 → 流水线
+- id: verification
+  number: '04'
+  name: 验证
+  level: 实现方法
+  description: 性质、覆盖与形式化证明
+  paths: 规格 → 反例 → 证明
+- id: backend
+  number: '05'
+  name: 后端
+  level: 实现方法
+  description: 布局、布线与物理约束
+  paths: 综合 → 布局 → 布线
+- id: compiler
+  number: '06'
+  name: 编译器
+  level: 软件与学习
+  description: 中间表示、调度与映射
+  paths: IR → 优化 → 代码生成
+- id: rl
+  number: '07'
+  name: 强化学习
+  level: 软件与学习
+  description: 价值、策略与搜索
+  paths: 状态 → 行动 → 回报
+- id: dl
+  number: 08
+  name: 深度学习
+  level: 软件与学习
+  description: 表示、注意力与模型结构
+  paths: 网络 → 训练 → 推理

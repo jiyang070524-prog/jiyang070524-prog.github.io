@@ -1,48 +1,34 @@
-# 个人主页
+# 论文阅读地图
 
-一个适合 GitHub Pages 的中文个人主页，包含笔记列表、文章阅读页和移动端布局。使用 GitHub 内置的 Jekyll 构建，无需数据库或额外服务。
+这是部署在 `jiyang070524-prog.github.io` 的个人论文主页。首页按“硬件结构 → 实现方法 → 软件与学习”三层组织八个方向；一篇论文可以同时属于多个方向。论文详情页保留原文入口和一张短评便签。示例论文均为**待读**，站点没有代替站长写阅读评价。
+
+## 写一条短评
+
+每篇论文对应 `_papers/` 下的一个 Markdown 文件。在 GitHub 仓库中打开文件，点击铅笔编辑：
+
+```yaml
+review: 这里写读完后的简短判断；可以是一两句话。
+```
+
+提交后首页和论文详情页会自动显示“已短评”。`review` 留空时显示“待读”。如果想记更长的内容，可以写在第二个 `---` 之后，显示在论文详情页下方。
+
+## 新增论文
+
+复制 `_papers/` 里的一个文件，改成新的英文文件名，例如 `14-new-paper.md`。逐项修改：
+
+- `title`、`year`、`authors`：论文信息。
+- `source`：论文原文或作者、机构发布的页面。
+- `topics`：一个或多个方向 ID，见 `_data/topics.yml`，例如 `[memory, compute]`。
+- `why`：为什么把它加入阅读路线。这是选题提示，不是读后短评。
+- `order`：索引顺序；不要与已有论文重复。
+- `review`：保持空字符串，读完再填写。
+
+主页会自动收录 `_papers/` 中的论文。要调整方向名称、层级、路径文字，编辑 `_data/topics.yml`。目前的交叉路径说明在 `index.html` 的 `map-links` 段落中。
+
+## 原有内容
+
+原来的 `_posts/`、`notebook/` 和上传图片仍在仓库，页面从“旧笔记与其他记录”进入。新论文使用 `_papers/`，不会改动这些笔记。
 
 ## 发布
 
-1. 创建公开仓库 `jiyang070524-prog.github.io`，把本目录内的文件放进仓库根目录（不要再套一层 personal-homepage）。
-2. 打开仓库 **Settings → Pages**，在 **Build and deployment → Source** 选择 **Deploy from a branch**。
-3. Branch 选择 **main**，目录选择 **/(root)**，点击 **Save**。
-4. 等待 GitHub Actions 中 Pages 构建完成，然后访问 https://jiyang070524-prog.github.io/ 。
-
-## 用网页编辑笔记
-
-打开 [Pages CMS](https://app.pagescms.org/)，使用 GitHub 登录并授权它访问本仓库。之后可在“笔记”栏目中新建或编辑文章；保存后会写回 GitHub，并自动触发网站更新。文章日期会自动加入文件名。
-
-## 修改个人介绍
-
-在 `_config.yml` 修改 `author`、`title`、`description`。首页更多介绍在 `index.html` 的“关于这里”部分。当前名字 Yang 是临时使用的，可替换为你的昵称。
-
-## 新增笔记
-
-在 GitHub 仓库页面点击 **Add file → Create new file**，文件名写为 `_posts/2026-09-26-my-note.md`，粘贴以下内容后点击 **Commit changes**：
-
-```markdown
----
-title: 我的第一篇笔记
-description: 一句话介绍这篇笔记。
-category: 学习
----
-
-## 今天学到了什么
-
-这里写正文，支持 Markdown。
-```
-
-文件名必须是 `年-月-日-英文短名.md`，日期不能在未来。首页会按日期自动排列，不需要手动维护列表。英文短名决定文章网址，建议不同笔记使用不同短名。
-
-## 上传图片或 PDF
-
-使用 **Add file → Upload files** 把附件上传到 `assets/uploads/`，在笔记正文中引用：
-
-```markdown
-![图片说明]({{ '/assets/uploads/photo.png' | relative_url }})
-
-[查看 PDF]({{ '/assets/uploads/note.pdf' | relative_url }})
-```
-
-首页的“从这里开始”是一篇示例笔记，可以修改或删除。网站及仓库内容均公开。
+仓库 `main` 分支根目录由 GitHub Pages 的 Jekyll 构建；提交即触发更新。站点地址：<https://jiyang070524-prog.github.io/>。本地若已安装 Jekyll，可执行 `jekyll build --destination preview` 检查输出。`preview/` 是本地生成目录，不应提交。

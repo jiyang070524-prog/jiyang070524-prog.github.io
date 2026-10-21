@@ -1,0 +1,11 @@
+---
+layout: default
+---
+<article class="paper-detail">
+  <p class="back-link"><a href="{{ '/' | relative_url }}#papers">← 返回阅读索引</a></p>
+  <header><p class="eyebrow">PAPER {{ page.order }} / {{ page.year }}</p><h1>{{ page.title | escape }}</h1><p class="paper-meta">{{ page.authors | escape }}</p><div class="paper-tags">{% for id in page.topics %}{% assign topic = site.data.topics | where: 'id', id | first %}<a href="{{ '/' | relative_url }}?topic={{ id }}#papers">{{ topic.name }}</a>{% endfor %}</div></header>
+  <div class="detail-grid"><section class="box"><h2>为什么放进这张地图</h2><p>{{ page.why | escape }}</p><p><a href="{{ page.source }}" target="_blank" rel="noopener noreferrer">阅读论文原文 ↗</a></p></section>
+  <section class="review-note"><p class="eyebrow">READING NOTE / 短评便签</p>{% if page.review and page.review != '' %}<p>{{ page.review | escape }}</p>{% else %}<p class="empty-review">读完后，在这里写一句自己的判断。</p>{% endif %}</section></div>
+  {% if content != '' %}<section class="prose paper-body">{{ content }}</section>{% endif %}
+  <p class="back-link"><a href="{{ '/' | relative_url }}#papers">← 返回阅读索引</a></p>
+</article>
